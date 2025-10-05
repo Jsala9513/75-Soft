@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Daily Tracker</title>
+  <meta name="theme-color" content="#ef4444" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Daily Tracker</h1>
+    <div class="top-actions">
+      <button id="notifBtn" class="btn small outline">Enable Notifications</button>
+      <button id="installBtn" class="btn small hidden">Install</button>
+    </div>
+  </header>
+
+  <main id="view-daily" class="view active">
+    <div class="date-row">
+      <button id="prevDay" class="btn small" title="Previous Day">‹</button>
+      <div id="todayLabel"></div>
+      <button id="nextDay" class="btn small" title="Next Day">›</button>
+    </div>
+
+    <section class="card">
+      <h2>Tasks</h2>
+      <label class="checkbox-row">
+        <input type="checkbox" id="chkPhoto" />
+        <span>Take a progress picture</span>
+      </label>
+
+      <div class="divider"></div>
+
+      <div class="water">
+        <div class="row space-between">
+          <h3>Water intake</h3>
+          <span id="waterLabel" class="muted">0 / 64 oz</span>
+        </div>
+        <div class="progress-wrap">
+          <div id="waterBar" class="progress" style="width:0%"></div>
+        </div>
+        <div class="water-controls">
+          <button class="btn" data-oz="8">+8 oz</button>
+          <button class="btn" data-oz="12">+12 oz</button>
+          <button class="btn" data-oz="16">+16 oz</button>
+          <div class="custom-add">
+            <input id="customOz" type="number" inputmode="numeric" placeholder="+ oz" min="1" />
+            <button id="addCustomOz" class="btn">Add</button>
+          </div>
+          <button id="resetWater" class="btn outline">Reset</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="chkExercise" />
+        <span>Daily exercise</span>
+      </label>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="chkNoJunk" />
+        <span>No junk food / alcohol</span>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>Today’s Status</h2>
+      <div id="statusBadge" class="badge">In progress</div>
+      <p class="muted small">Strict mode: past days lock at midnight. Background pushes run 07:00–20:00 ET.</p>
+      <blockquote id="quoteBox" class="quote"></blockquote>
+    </section>
+  </main>
+
+  <main id="view-calendar" class="view">
+    <div class="date-row">
+      <button id="prevMonth" class="btn small">‹</button>
+      <div id="monthLabel"></div>
+      <button id="nextMonth" class="btn small">›</button>
+    </div>
+
+    <section class="card">
+      <div class="calendar">
+        <div class="cal-head">
+          <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+        <div id="calGrid" class="cal-grid"></div>
+      </div>
+      <div class="legend">
+        <span class="dot green"></span> Complete
+        <span class="dot red"></span> Incomplete
+        <span class="dot white"></span> Not decided yet (today/future)
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar">
+    <button data-view="view-daily" class="tab active">Daily</button>
+    <button data-view="view-calendar" class="tab">Calendar</button>
+  </nav>
+
+  <!-- Celebration overlay -->
+  <div id="celebrate" class="celebrate hidden">
+    <div class="celebrate-content">
+      <h2>VICTORY.</h2>
+      <p>Day conquered. Respect earned.</p>
+      <button id="celebrateClose" class="btn">Continue</button>
+    </div>
+    <canvas id="confetti"></canvas>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+      });
+    }
+  </script>
+</body>
+</html>

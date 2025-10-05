@@ -1,0 +1,136 @@
+:root{
+  --bg: #0a0a0a;
+  --card: #111113;
+  --fg: #f3f4f6;
+  --muted: #9ca3af;
+  --primary: #ef4444;
+  --primary-2: #b91c1c;
+  --ok: #16a34a;
+  --bad: #ef4444;
+  --border: #1f2937;
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--fg)
+}
+
+.topbar{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;background:linear-gradient(180deg,#141416,#0f0f10);
+  border-bottom:1px solid var(--border)
+}
+.top-actions{display:flex;gap:8px}
+h1{font-size:18px;margin:0}
+h2{font-size:16px;margin:0 0 8px}
+h3{font-size:14px;margin:0}
+
+.view{display:none;padding:16px 16px 88px}
+.view.active{display:block}
+
+.card{
+  background:linear-gradient(180deg,#121214,#0d0d0f);
+  border:1px solid #191a1e;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:16px;
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+
+.checkbox-row{
+  display:flex;gap:12px;align-items:center;
+  padding:10px 8px;border-radius:10px
+}
+.checkbox-row input{width:22px;height:22px;accent-color:var(--primary)}
+
+.row{display:flex;align-items:center;gap:8px}
+.space-between{justify-content:space-between}
+
+.divider{height:1px;background:var(--border);margin:12px 0}
+
+.progress-wrap{
+  width:100%;height:16px;background:#0b0b0d;border:1px solid #202126;
+  border-radius:999px;overflow:hidden;margin:6px 0 10px
+}
+.progress{height:100%;background:linear-gradient(90deg, var(--primary), var(--primary-2));}
+
+.water-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.custom-add{display:flex;gap:8px;align-items:center}
+.custom-add input{
+  width:90px;padding:8px;border-radius:10px;border:1px solid var(--border);
+  background:#0e0e10;color:var(--fg)
+}
+
+.btn{
+  padding:10px 12px;border:none;border-radius:10px;background:var(--primary);
+  color:white;font-weight:700;text-transform:uppercase;letter-spacing:.02em
+}
+.btn.small{padding:6px 10px;font-size:13px}
+.btn.outline{background:transparent;border:1px solid var(--primary);color:var(--fg)}
+.btn:disabled{opacity:.5}
+.hidden{display:none !important}
+
+.badge{
+  display:inline-block;padding:8px 12px;border-radius:999px;font-weight:800;
+  background:#0f0f10;border:1px solid var(--border)
+}
+.badge.ok{background:rgba(22,163,74,.12);border-color:#14532d;color:#bbf7d0}
+.badge.bad{background:rgba(239,68,68,.12);border-color:#7f1d1d;color:#fecaca}
+
+.quote{
+  margin:10px 0 0;font-style:italic;border-left:3px solid var(--primary);
+  padding-left:10px;color:#e5e7eb
+}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;background:#101012;border-top:1px solid var(--border);
+  display:flex
+}
+.tab{
+  flex:1;padding:12px 8px;background:transparent;color:var(--fg);border:none;font-weight:800
+}
+.tab.active{color:#fff;background:rgba(239,68,68,.12);box-shadow:inset 0 0 0 1px rgba(239,68,68,.3)}
+
+.date-row{display:flex;align-items:center;justify-content:space-between;margin:0 0 10px}
+#todayLabel,#monthLabel{font-weight:900}
+
+.calendar{width:100%}
+.cal-head,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-head{margin-bottom:6px;color:#d1d5db;font-weight:800}
+.cal-grid{min-height:220px}
+
+.cal-cell{
+  aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;
+  border:1px solid #1c1d22;border-radius:12px;background:#0d0d10;color:#fff;user-select:none
+}
+.cal-cell.disabled{opacity:.35}
+.cal-cell .num{font-weight:900}
+.cal-cell.white{background:#0d0d10}
+.cal-cell.green{background:#0f3c1f;border-color:#1a7f3a}
+.cal-cell.red{background:#3a0f10;border-color:#7f1d1d}
+
+.legend{display:flex;gap:14px;align-items:center;margin-top:12px;color:#d1d5db}
+.dot{display:inline-block;width:12px;height:12px;border-radius:999px;margin-right:6px;border:1px solid var(--border)}
+.dot.green{background:#16a34a}
+.dot.red{background:#ef4444}
+.dot.white{background:#0d0d10}
+
+/* Celebration overlay */
+.celebrate{
+  position:fixed;inset:0;background:rgba(0,0,0,.7);
+  backdrop-filter:blur(2px);
+  display:flex;align-items:center;justify-content:center;
+}
+.celebrate.hidden{display:none}
+.celebrate-content{
+  position:relative;z-index:2;text-align:center;background:#121214;border:1px solid #27272a;
+  border-radius:18px;padding:24px 20px;box-shadow:0 10px 30px rgba(0,0,0,.5)
+}
+.celebrate-content h2{margin:0 0 6px;font-size:28px;color:#fef2f2;letter-spacing:.02em}
+.celebrate-content p{margin:0 0 14px;color:#fde68a}
+#confetti{position:absolute;inset:0;z-index:1;pointer-events:none}
